@@ -1,0 +1,31 @@
+{
+  "name": "intersection",
+  "version": "0.0.1",
+  "description": "library for handling simple 2d polygon intersection",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "set TS_NODE_COMPILER_OPTIONS={\"module\": \"commonjs\" } && mocha -r ts-node/register 'test/**/*.test.ts'",
+    "coverage": "set TS_NODE_COMPILER_OPTIONS={\"module\": \"commonjs\" } && nyc mocha -r ts-node/register 'test/**/*.test.ts'",
+    "build" : "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "nyc": "^15.1.0"
+  }
+}
