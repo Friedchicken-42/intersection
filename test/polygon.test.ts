@@ -16,6 +16,7 @@ describe('Polygon testing', () => {
 
         expect(poly.center).to.eql(new Point(0, 0));
     })
+
     it('should have a area equals to 4', () => {
         const poly = new Polygon([
             new Point(0, 0),
@@ -25,6 +26,19 @@ describe('Polygon testing', () => {
         ]);
 
         expect(poly.area()).to.equal(4);
+    })
+
+    it('should recalculate the center after a rotation around another point', () => {
+        const poly = new Polygon([
+            new Point(0, 0),
+            new Point(2, 0),
+            new Point(2, 2),
+            new Point(0, 2)
+        ]);
+
+        poly.rotateFromPoint(Math.PI, new Point(0, 0))
+
+        expect(poly.center).to.eql(new Point(-1, -1))
     })
 
     it('should keep the same area after a rotation', () => {
