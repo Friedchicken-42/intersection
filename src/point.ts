@@ -1,12 +1,12 @@
-import { roundZero } from './utils'
+import { round, roundZero } from './utils'
 
 export class Point {
     x: number;
     y: number;
 
     constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
+        this.x = round(x);
+        this.y = round(y);
     }
 
     translate(xoff: number, yoff: number) {
@@ -26,5 +26,9 @@ export class Point {
 
         this.x = roundZero(xnew + origin.x);
         this.y = roundZero(ynew + origin.y);
+    }
+
+    string(): string {
+        return '(' + this.x + '; ' + this.y + ')'
     }
 }

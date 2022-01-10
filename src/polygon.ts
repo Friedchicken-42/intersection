@@ -94,16 +94,19 @@ export class Polygon {
     }
 
     intersectPoly(poly: Polygon): Polygon | null {
-        let points: Point[] = [];
-        points = points.concat(this.points.filter((point: Point): boolean => poly.containPoint(point)));
-        points = points.concat(poly.points.filter((point: Point): boolean => this.containPoint(point)));
+        let pointMap: Map<string, Point> = new Map()
+        this.points.filter((point: Point): boolean => poly.containPoint(point))
+            .forEach((point: Point) => pointMap.set(point.string(), point))
+        poly.points.filter((point: Point): boolean => this.containPoint(point))
+            .forEach((point: Point) => pointMap.set(point.string(), point))
 
         let border_list = this.points.pair((p1: Point, p2: Point): Point[] => poly.intersectLine(new Line(p1, p2)));
         let border = border_list.reduce((prev: Point[], current: Point[]): Point[] => prev.concat(current));
 
-        points = points.concat(border);
+        border
+            .forEach((point: Point) => pointMap.set(point.string(), new Point(point.x, point.y)))
 
-        points = [...new Set(points)];
+        let points = [...pointMap.values()]
 
         if (points.length === 0) return null;
 
