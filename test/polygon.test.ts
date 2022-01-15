@@ -95,7 +95,7 @@ describe('Polygon testing', () => {
         expect(poly.containPoint(point)).to.be.true;
     })
 
-    it('shuold intersect with another polygon', () => {
+    it('should intersect with another polygon', () => {
         const a = new Polygon([
             new Point(0, 0),
             new Point(2, 0),
@@ -161,4 +161,28 @@ describe('Polygon testing', () => {
         expect(a.intersectPoly(b)).to.be.null;
     })
 
+    it('should intersect with a collinear square', () => {
+        const a = new Polygon([
+            new Point(0, 0),
+            new Point(2, 0),
+            new Point(2, 2),
+            new Point(0, 2)
+        ]);
+
+        const b = new Polygon([
+            new Point(1, 0),
+            new Point(3, 0),
+            new Point(3, 2),
+            new Point(1, 2)
+        ]);
+
+        const result = new Polygon([
+            new Point(1, 0),
+            new Point(2, 0),
+            new Point(2, 2),
+            new Point(1, 2)
+        ]);
+
+        expect(a.intersectPoly(b)).to.eql(result)
+    })
 })

@@ -89,8 +89,9 @@ export class Polygon {
 
     intersectLine(line: Line): Point[] {
         return this.points
-            .pair((p1: Point, p2: Point): Point | null => new Line(p1, p2).intersectLine(line))
-            .filter((p: Point | null): boolean => p !== null)
+            .pair((p1: Point, p2: Point): Point | Point[] => new Line(p1, p2).intersectLine(line))
+            .flat()
+            .filter((p: Point | null): boolean => !!p )
     }
 
     intersectPoly(poly: Polygon): Polygon | null {
@@ -100,10 +101,11 @@ export class Polygon {
         poly.points.filter((point: Point): boolean => this.containPoint(point))
             .forEach((point: Point) => pointMap.set(point.string(), point))
 
-        let border_list = this.points.pair((p1: Point, p2: Point): Point[] => poly.intersectLine(new Line(p1, p2)));
-        let border = border_list.reduce((prev: Point[], current: Point[]): Point[] => prev.concat(current));
-
-        border
+        let border = this.points.pair((p1: Point, p2: Point): Point[] => poly.intersectLine(new Line(p1, p2)))
+            
+        border 
+            .flat()
+            .filter((p: Point | null): boolean => !!p )
             .forEach((point: Point) => pointMap.set(point.string(), new Point(point.x, point.y)))
 
         let points = [...pointMap.values()]
