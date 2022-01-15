@@ -55,8 +55,8 @@ export class Polygon {
 
     rotateFromPoint(angle: number, origin: Point) {
         this.points.forEach((point: Point) => point.rotate(angle, origin));
-        this.orderPoints();
         this.setCenter()
+        this.orderPoints();
     }
 
     rotate(angle: number) {
