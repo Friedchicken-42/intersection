@@ -76,10 +76,9 @@ describe('Polygon testing', () => {
             new Point(0, 2)
         ]);
 
-        const position = new Point(5, 5)
-        poly.moveTo(position);
+        poly.moveTo(5, 5);
 
-        expect(poly.center).to.eql(position);
+        expect(poly.center).to.eql(new Point(5, 5));
         expect(poly.area()).to.equal(4);
     })
 

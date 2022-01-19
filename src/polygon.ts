@@ -68,10 +68,10 @@ export class Polygon {
         this.center.translate(xoff, yoff);
     }
 
-    moveTo(point: Point) {
+    moveTo(x: number, y: number) {
         const diff = new Point(
-            point.x - this.center.x,
-            point.y - this.center.y
+            x - this.center.x,
+            y - this.center.y
         )
         this.translate(diff.x, diff.y)
     }
