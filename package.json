@@ -14,7 +14,7 @@
     "test": "set TS_NODE_COMPILER_OPTIONS={\"module\": \"commonjs\" } && mocha -r ts-node/register 'test/**/*.test.ts'",
     "coverage": "set TS_NODE_COMPILER_OPTIONS={\"module\": \"commonjs\" } && nyc mocha -r ts-node/register 'test/**/*.test.ts'",
     "build": "tsc",
-    "postInstall": "tsc"
+    "postInstall": "yarn run tsc"
   },
   "author": "",
   "license": "ISC",
